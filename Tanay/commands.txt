@@ -1,0 +1,66 @@
+# Instructions to run all Node.js and AngularJS programs in tanay folder
+
+## 1. Install Node.js
+- Download and install Node.js from https://nodejs.org
+- Verify installation:
+
+    node -v
+    npm -v
+
+## 2. Install required Node.js packages (common for all slips)
+- Open terminal in the root folder (tanay)
+- Run the following commands once:
+
+    npm install express
+    npm install body-parser
+    npm install mysql
+
+- Optional packages depending on the programs:
+
+    npm install angular
+    npm install nodemon   # Optional, for auto-restart during development
+
+## 3. Running Node.js programs
+
+- Navigate to each slip folder, for example:
+
+    cd foldername
+
+- Run the program file using node:
+
+    node name.js
+    node programname.js
+
+- If the program uses Express (web server), open your browser at the port mentioned in the script, usually 3000:
+
+    http://localhost:3000
+
+- If the program interacts with MySQL:
+    - Ensure MySQL server is running
+    - Update database credentials in your script (host, user, password, database)
+    - Use `CREATE DATABASE` and `CREATE TABLE` commands if not already created
+    - Example MySQL setup for a slip program:
+
+        mysql -u root -p
+        CREATE DATABASE your_database_name;
+        USE your_database_name;
+        
+        (Then run your Node.js script)
+
+## 4. Running AngularJS programs
+- AngularJS programs are mostly static HTML + JS files
+- Open the HTML file in a browser:
+    - Example:
+        slip3/name.html
+- If using AngularJS with Node.js backend:
+    - Make sure backend server is running first
+    - Access frontend via browser at http://localhost:3000 (or port defined in Node.js script)
+
+## 5. Common Notes
+- Some programs may require creating sample files (`sample.txt`) or MySQL tables before running
+- Check each script for the port number and database credentials
+- Use `npm install` in each slip folder if any new Node.js module is required
+
+## 6. Optional Tools
+- Use `nodemon q1.js` instead of `node q1.js` for auto-reload during development
+- Use Postman to test API endpoints for Node.js applications

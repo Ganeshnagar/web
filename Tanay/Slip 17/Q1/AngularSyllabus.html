@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="mscApp">
+<head>
+    <title>M.Sc (CS) Sem-II Syllabus</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+    <script>
+        var app = angular.module('mscApp', ['ngRoute']);
+
+        app.config(function($routeProvider) {
+            $routeProvider
+            .when('/dbms', {
+                template: '<h3>Database Management Systems</h3><ul><li>Relational Models</li><li>SQL Queries</li><li>Transactions & Concurrency</li></ul>'
+            })
+            .when('/os', {
+                template: '<h3>Operating Systems</h3><ul><li>Process Management</li><li>Memory Management</li><li>File Systems</li></ul>'
+            })
+            .when('/ai', {
+                template: '<h3>Artificial Intelligence</h3><ul><li>Search Techniques</li><li>Knowledge Representation</li><li>Machine Learning Basics</li></ul>'
+            })
+            .otherwise({
+                template: '<h3>Welcome! Select a subject from the menu.</h3>'
+            });
+        });
+    </script>
+</head>
+<body>
+    <h2>M.Sc (CS) Sem-II Syllabus</h2>
+    <nav>
+        <a href="#!/dbms">DBMS</a> |
+        <a href="#!/os">Operating Systems</a> |
+        <a href="#!/ai">Artificial Intelligence</a>
+    </nav>
+    <div ng-view style="margin-top:20px; border:1px solid #ccc; padding:10px;"></div>
+</body>
+</html>

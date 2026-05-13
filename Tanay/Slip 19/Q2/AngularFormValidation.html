@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html ng-app="validationApp">
+<head>
+    <title>User Details Form</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+    <script>
+        // AngularJS module with ngRoute
+        var app = angular.module('validationApp', ['ngRoute']);
+
+        app.config(function($routeProvider) {
+            $routeProvider
+            .when('/form', {
+                templateUrl: 'form.html',
+                controller: 'FormController'
+            })
+            .otherwise({
+                redirectTo: '/form'
+            });
+        });
+
+        // Controller for form
+        app.controller('FormController', function($scope) {
+            $scope.user = {};
+
+            $scope.validateForm = function() {
+                // Name: characters only
+                const nameRegex = /^[A-Za-z ]+$/;
+                if (!nameRegex.test($scope.user.name)) {
+                    alert("Name must contain only letters.");
+                    return false;
+                }
+
+                // Address: must contain "SPPU M.Sc. Computer Science Syllabus 2023-24"
+                if (!$scope.user.address.includes("SPPU M.Sc. Computer Science Syllabus 2023-24")) {
+                    alert("Address must contain 'SPPU M.Sc. Computer Science Syllabus 2023-24'.");
+                    return false;
+                }
+
+                // Mobile number: 10 digits only
+                const mobileRegex = /^[0-9]{10}$/;
+                if (!mobileRegex.test($scope.user.mobile)) {
+                    alert("Mobile number must be 10 digits.");
+                    return false;
+                }
+
+                // Pin code: 6 digits only
+                const pinRegex = /^[0-9]{6}$/;
+                if (!pinRegex.test($scope.user.pincode)) {
+                    alert("Pin code must be 6 digits.");
+                    return false;
+                }
+
+                // Email: must contain exactly one '@' and one '.'
+                const email = $scope.user.email;
+                if (!email.includes('@') || !email.includes('.') || email.split('@').length !== 2) {
+                    alert("Email must contain one '@' and at least one '.' symbol.");
+                    return false;
+                }
+
+                alert("Form submitted successfully!");
+                return true;
+            };
+        });
+    </script>
+</head>
+<body>
+    <div ng-view></div>
+
+    <!-- Form template -->
+    <script type="text/ng-template" id="form.html">
+        <h2>User Details Form</h2>
+        <form ng-submit="validateForm()">
+            <label for="name">Name:</label><br>
+            <input type="text" ng-model="user.name" id="name"><br><br>
+
+            <label for="address">Address:</label><br>
+            <input type="text" ng-model="user.address" id="address" placeholder="SPPU M.Sc. Computer Science Syllabus 2023-24"><br><br>
+
+            <label for="mobile">Mobile Number:</label><br>
+            <input type="text" ng-model="user.mobile" id="mobile"><br><br>
+
+            <label for="pincode">Pin Code:</label><br>
+            <input type="text" ng-model="user.pincode" id="pincode"><br><br>
+
+            <label for="email">Email ID:</label><br>
+            <input type="text" ng-model="user.email" id="email"><br><br>
+
+            <input type="submit" value="Submit">
+        </form>
+    </script>
+</body>
+</html>

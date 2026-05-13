@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="locationApp">
+<head>
+    <title>Current Page Location</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+        var app = angular.module('locationApp', []);
+
+        app.controller('LocationController', function($scope, $location) {
+            $scope.currentLocation = {
+                absUrl: $location.absUrl(),
+                protocol: $location.protocol(),
+                host: $location.host(),
+                port: $location.port(),
+                path: $location.path()
+            };
+        });
+    </script>
+</head>
+<body ng-controller="LocationController">
+    <h2>Current Web Page Location</h2>
+    <ul>
+        <li><strong>Absolute URL:</strong> {{currentLocation.absUrl}}</li>
+        <li><strong>Protocol:</strong> {{currentLocation.protocol}}</li>
+        <li><strong>Host:</strong> {{currentLocation.host}}</li>
+        <li><strong>Port:</strong> {{currentLocation.port}}</li>
+        <li><strong>Path:</strong> {{currentLocation.path}}</li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; }
+        input { margin: 5px 0; padding: 8px; width: 250px; }
+        label { display: block; margin-top: 10px; }
+        .error { color: red; }
+        .success { color: green; }
+        button { padding: 10px 20px; margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+    <h2>Student Registration Form</h2>
+
+    <form id="registrationForm" onsubmit="return validateForm()">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" required>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" required>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required>
+
+        <button type="submit">Register</button>
+        <p id="message" class="error"></p>
+    </form>
+
+    <script>
+        function validateForm() {
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const age = parseInt(document.getElementById('age').value);
+            const message = document.getElementById('message');
+
+          
+            const nameRegex = /^[A-Za-z]+$/;
+
+            if (!nameRegex.test(firstName)) {
+                message.textContent = "First name must contain only alphabets.";
+                return false;
+            }
+
+         
+            if (!nameRegex.test(lastName)) {
+                message.textContent = "Last name must contain only alphabets.";
+                return false;
+            }
+
+         
+            if (isNaN(age) || age < 18 || age > 50) {
+                message.textContent = "Age must be between 18 and 50.";
+                return false;
+            }
+
+        
+            message.textContent = "";
+            alert("Registration Successful!");
+            return true;
+        }
+    </script>
+
+</body>
+</html>

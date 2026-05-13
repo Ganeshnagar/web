@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="studentApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Registration</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; }
+        input { padding: 8px; width: 250px; margin: 5px 0; }
+        label { display: block; margin-top: 10px; }
+        .error { color: red; }
+        .success { color: green; }
+        button { padding: 10px 20px; margin-top: 15px; }
+    </style>
+</head>
+<body ng-controller="studentCtrl">
+
+    <h2>Student Registration Form</h2>
+
+    <p ng-show="greeting" class="success">{{greeting}}</p>
+
+    <form ng-submit="registerStudent()">
+        <label>First Name:</label>
+        <input type="text" ng-model="student.firstName" required>
+        <span class="error" ng-show="errors.firstName">{{errors.firstName}}</span>
+
+        <label>Last Name:</label>
+        <input type="text" ng-model="student.lastName" required>
+        <span class="error" ng-show="errors.lastName">{{errors.lastName}}</span>
+
+        <label>Age:</label>
+        <input type="number" ng-model="student.age" required>
+        <span class="error" ng-show="errors.age">{{errors.age}}</span>
+
+        <button type="submit">Register</button>
+    </form>
+
+    <p class="success" ng-show="successMessage">{{successMessage}}</p>
+
+    <script>
+        angular.module('studentApp', [])
+        .controller('studentCtrl', ['$scope', '$timeout', function($scope, $timeout) {
+            $scope.student = {};
+            $scope.errors = {};
+            $scope.successMessage = "";
+
+            // Determine greeting based on current time
+            const hours = new Date().getHours();
+            if (hours < 12) {
+                $scope.greeting = "Good Morning!";
+            } else if (hours < 18) {
+                $scope.greeting = "Good Afternoon!";
+            } else {
+                $scope.greeting = "Good Evening!";
+            }
+
+            // Form submission
+            $scope.registerStudent = function() {
+                $scope.errors = {};
+                const nameRegex = /^[A-Za-z]+$/;
+                let valid = true;
+
+                // First Name validation
+                if (!nameRegex.test($scope.student.firstName)) {
+                    $scope.errors.firstName = "First name must contain only alphabets.";
+                    valid = false;
+                }
+
+                // Last Name validation
+                if (!nameRegex.test($scope.student.lastName)) {
+                    $scope.errors.lastName = "Last name must contain only alphabets.";
+                    valid = false;
+                }
+
+                // Age validation
+                if ($scope.student.age < 18 || $scope.student.age > 50) {
+                    $scope.errors.age = "Age must be between 18 and 50.";
+                    valid = false;
+                }
+
+                if (valid) {
+                    // Simulate AJAX call using $timeout
+                    $timeout(function() {
+                        $scope.successMessage = `Hello ${$scope.student.firstName}! You are successfully registered.`;
+                        $scope.student = {}; // clear form
+                    }, 500);
+                }
+            };
+        }]);
+    </script>
+
+</body>
+</html>

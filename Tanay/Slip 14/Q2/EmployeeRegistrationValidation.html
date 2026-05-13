@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Registration Form</title>
+    <script>
+        function validateForm() {
+            const dob = document.getElementById('dob').value;
+            const joiningDate = document.getElementById('joiningDate').value;
+            const salary = document.getElementById('salary').value.trim();
+
+            const today = new Date();
+            const dobDate = new Date(dob);
+            const joinDate = new Date(joiningDate);
+            const salaryNum = parseFloat(salary);
+
+        
+            if (dob === '' || dobDate >= today) {
+                alert('Please enter a valid Date of Birth (cannot be future).');
+                return false;
+            }
+
+        
+            if (joiningDate === '' || joinDate < dobDate || joinDate > today) {
+                alert('Joining Date must be after DOB and not in the future.');
+                return false;
+            }
+
+           
+            if (isNaN(salaryNum) || salaryNum <= 0) {
+                alert('Please enter a valid Salary greater than 0.');
+                return false;
+            }
+
+            alert('Employee registration is valid!');
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <h2>Employee Registration Form</h2>
+    <form onsubmit="return validateForm()">
+        <label for="dob">Date of Birth:</label><br>
+        <input type="date" id="dob" name="dob"><br><br>
+
+        <label for="joiningDate">Joining Date:</label><br>
+        <input type="date" id="joiningDate" name="joiningDate"><br><br>
+
+        <label for="salary">Salary:</label><br>
+        <input type="text" id="salary" name="salary"><br><br>
+
+        <input type="submit" value="Register">
+    </form>
+</body>
+</html>

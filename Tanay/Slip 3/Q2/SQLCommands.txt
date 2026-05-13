@@ -1,0 +1,11 @@
+CREATE TABLE Teacher (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50),
+    subject VARCHAR(50),
+    salary INT
+);
+
+INSERT INTO Teacher (name, subject, salary) VALUES
+('Alice','Math',25000),
+('Bob','Science',18000),
+('Charlie','English',30000);

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="studentApp">
+<head>
+    <title>Student Details</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+        var app = angular.module('studentApp', []);
+        app.controller('StudentController', function($scope) {
+            $scope.students = [
+                {id:1, name:'Alice', age:20, grade:'A'},
+                {id:2, name:'Bob', age:21, grade:'B'},
+                {id:3, name:'Charlie', age:22, grade:'A'},
+                {id:4, name:'David', age:23, grade:'C'},
+                {id:5, name:'Eve', age:20, grade:'B'},
+                {id:6, name:'Frank', age:21, grade:'A'},
+                {id:7, name:'Grace', age:22, grade:'B'},
+                {id:8, name:'Hannah', age:23, grade:'C'},
+                {id:9, name:'Ian', age:20, grade:'A'},
+                {id:10, name:'Judy', age:21, grade:'B'}
+            ];
+        });
+    </script>
+</head>
+<body ng-controller="StudentController">
+    <h2>Student Details</h2>
+    <table border="1" cellpadding="5" cellspacing="0">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Grade</th>
+        </tr>
+        <tr ng-repeat="student in students">
+            <td>{{student.id}}</td>
+            <td>{{student.name}}</td>
+            <td>{{student.age}}</td>
+            <td>{{student.grade}}</td>
+        </tr>
+    </table>
+</body>
+</html>

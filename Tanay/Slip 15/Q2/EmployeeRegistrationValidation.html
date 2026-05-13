@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Registration Form</title>
+    <script>
+        function validateForm() {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const mobile = document.getElementById('mobile').value.trim();
+            const department = document.getElementById('department').value.trim();
+            const joiningDate = document.getElementById('joiningDate').value;
+
+            // Regular expressions
+            const nameRegex = /^[A-Za-z ]+$/; // only letters & spaces
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+            const mobileRegex = /^[0-9]{10}$/; // 10-digit number
+            const deptRegex = /^[A-Za-z ]+$/;
+
+            if (!nameRegex.test(name)) {
+                alert("Name should contain only alphabets.");
+                return false;
+            }
+
+            if (!emailRegex.test(email)) {
+                alert("Enter a valid email address.");
+                return false;
+            }
+
+            if (!mobileRegex.test(mobile)) {
+                alert("Enter a valid 10-digit mobile number.");
+                return false;
+            }
+
+            if (!deptRegex.test(department)) {
+                alert("Department should contain only alphabets.");
+                return false;
+            }
+
+            if (joiningDate === '') {
+                alert("Please select a joining date.");
+                return false;
+            }
+
+            alert("Employee registration is valid!");
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <h2>Employee Registration Form</h2>
+    <form onsubmit="return validateForm()">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name"><br><br>
+
+        <label for="email">Email ID:</label><br>
+        <input type="text" id="email" name="email"><br><br>
+
+        <label for="mobile">Mobile Number:</label><br>
+        <input type="text" id="mobile" name="mobile"><br><br>
+
+        <label for="department">Department:</label><br>
+        <input type="text" id="department" name="department"><br><br>
+
+        <label for="joiningDate">Joining Date:</label><br>
+        <input type="date" id="joiningDate" name="joiningDate"><br><br>
+
+        <input type="submit" value="Register">
+    </form>
+</body>
+</html>
