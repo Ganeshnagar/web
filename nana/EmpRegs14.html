@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Registration Form</title>
+    <script>
+        function validateForm() {
+            let dob = document.getElementById("dob").value;
+            let joinDate = document.getElementById("joinDate").value;
+            let salary = document.getElementById("salary").value;
+
+            let today = new Date();
+            let dobDate = new Date(dob);
+            let join = new Date(joinDate);
+
+            
+            let age = today.getFullYear() - dobDate.getFullYear();
+            if (dobDate > today || age < 18) {
+                alert("Invalid DOB! Employee must be at least 18 years old.");
+                return false;
+            }
+
+           
+            if (join < today) {
+                alert("Joining Date cannot be in the past.");
+                return false;
+            }
+
+      
+            if (salary <= 0 || isNaN(salary)) {
+                alert("Salary must be a positive number.");
+                return false;
+            }
+
+            alert("Form submitted successfully!");
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+    <h2>Employee Registration Form</h2>
+
+    <form onsubmit="return validateForm()">
+        <label>Employee Name:</label><br>
+        <input type="text" required><br><br>
+
+        <label>Email:</label><br>
+        <input type="email" required><br><br>
+
+        <label>Date of Birth:</label><br>
+        <input type="date" id="dob" required><br><br>
+
+        <label>Joining Date:</label><br>
+        <input type="date" id="joinDate" required><br><br>
+
+        <label>Salary:</label><br>
+        <input type="number" id="salary" required><br><br>
+
+        <input type="submit" value="Register">
+    </form>
+</body>
+</html>

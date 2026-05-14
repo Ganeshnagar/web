@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Form Validation</title>
+
+    <script>
+        function validateForm() {
+
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let mobile = document.getElementById("mobile").value;
+            let department = document.getElementById("department").value;
+            let joining = document.getElementById("joining").value;
+
+           
+            let nameRegex = /^[A-Za-z ]+$/;
+            let emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+            let mobileRegex = /^[0-9]{10}$/;
+            let deptRegex = /^[A-Za-z ]+$/;
+
+         
+            if (!nameRegex.test(name)) {
+                alert("Enter valid name");
+                return false;
+            }
+
+            if (!emailRegex.test(email)) {
+                alert("Enter valid email");
+                return false;
+            }
+
+            if (!mobileRegex.test(mobile)) {
+                alert("Enter valid 10-digit mobile number");
+                return false;
+            }
+
+  
+            if (!deptRegex.test(department)) {
+                alert("Enter valid department");
+                return false;
+            }
+
+            if (joining == "") {
+                alert("Select joining date");
+                return false;
+            }
+
+            alert("Form Submitted Successfully");
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+
+    <h2>Employee Registration Form</h2>
+
+    <form onsubmit="return validateForm()">
+
+        Name:<br>
+        <input type="text" id="name"><br><br>
+
+        Email ID:<br>
+        <input type="text" id="email"><br><br>
+
+        Mobile Number:<br>
+        <input type="text" id="mobile"><br><br>
+
+        Department:<br>
+        <input type="text" id="department"><br><br>
+
+        Joining Date:<br>
+        <input type="date" id="joining"><br><br>
+
+        <input type="submit" value="Submit">
+
+    </form>
+
+</body>
+</html>

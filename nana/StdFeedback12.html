@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feedback Form</title>
+</head>
+<body>
+
+<h2>Student Feedback Form</h2>
+
+<form onsubmit="return validateForm()">
+
+    Name:
+    <input type="text" id="name"><br><br>
+
+    Email:
+    <input type="text" id="email"><br><br>
+
+    Mobile No:
+    <input type="text" id="mobile"><br><br>
+
+    Feedback:
+    <select id="feedback">
+        <option value="">Select</option>
+        <option>Not good</option>
+        <option>Good</option>
+        <option>Very good</option>
+        <option>Excellent</option>
+    </select><br><br>
+
+    <input type="submit" value="Submit">
+
+</form>
+
+<script>
+
+function validateForm()
+{
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let mobile = document.getElementById("mobile").value;
+    let feedback = document.getElementById("feedback").value;
+
+    let namePattern = /^[A-Za-z]+$/;
+    let emailPattern = /@/;
+    let mobilePattern = /^[0-9]{10}$/;
+
+    if(!name.match(namePattern))
+    {
+        alert("Invalid Name");
+        return false;
+    }
+
+    if(!email.match(emailPattern))
+    {
+        alert("Invalid Email");
+        return false;
+    }
+
+    if(!mobile.match(mobilePattern))
+    {
+        alert("Invalid Mobile Number");
+        return false;
+    }
+
+    if(feedback == "")
+    {
+        alert("Select Feedback");
+        return false;
+    }
+
+    alert("Feedback Submitted");
+    return true;
+}
+
+</script>
+
+</body>
+</html>
